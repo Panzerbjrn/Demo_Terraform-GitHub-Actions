@@ -23,7 +23,3 @@ resource "azurerm_resource_group" "rg" {
   }
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.region}-vnext"
-  location = local.azure_region
-}
