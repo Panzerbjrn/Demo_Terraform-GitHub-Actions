@@ -39,13 +39,20 @@ jobs:
     
     - name: Terraform Validate
       id: validate
-      run: terraform validate -no-color
+      run: terraform validate
     
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color
+      run: terraform plan
       continue-on-error: false
     
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: '1.5.0'
+        tf_actions_subcommand: 'apply'
+
 #    steps:
 #    # Checkout the repository to the GitHub Actions runner
 #    - name: Checkout
