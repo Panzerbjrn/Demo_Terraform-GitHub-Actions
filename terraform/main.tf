@@ -16,9 +16,14 @@ provider "azurerm" {
 
 #Create Resource Group
 resource "azurerm_resource_group" "rg" {
-  name     = "example"
-  location = "West Europe"
+  name     = "TerraformGHActionsDemo"
+  location = var.azure_region
   tags = {
     source = "TerraformGHActions"
   }
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.region}-vnext"
+  location = local.azure_region
 }
